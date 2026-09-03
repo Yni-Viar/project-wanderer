@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bcyt0diheo8u5"]
+
+[ext_resource type="Shader" uid="uid://bu3dwutrifajr" path="res://Shaders/WaterShader/water_shader.gdshader" id="1_7js7j"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qmysv"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x0gog"]
+noise = SubResource("FastNoiseLite_qmysv")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_famow"]
+seed = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7js7j"]
+noise = SubResource("FastNoiseLite_famow")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7js7j")
+shader_parameter/water_color = Color(0, 0, 0, 1)
+shader_parameter/water_noise_1 = SubResource("NoiseTexture2D_x0gog")
+shader_parameter/water_noise_2 = SubResource("NoiseTexture2D_7js7j")
+shader_parameter/depth_distance = 0.5
+shader_parameter/water_color_ratio = 0.5
+shader_parameter/beers_law = 3.0
+shader_parameter/normal_scale = 0.5
+shader_parameter/roughness_scale = 0.2
+shader_parameter/time_scale = 5.0
+shader_parameter/uv_scale = 0.20000000298024

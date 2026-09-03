@@ -57,6 +57,12 @@ func terrain_generator(offset: Vector2i):
 	mi.create_trimesh_collision()
 	add_child(mi)
 	
+	var water_level: MeshInstance3D = MeshInstance3D.new()
+	water_level.mesh = PlaneMesh.new()
+	water_level.mesh.size = Vector2(64, 64)
+	water_level.mesh.center_offset = Vector3(32, -1, 32)
+	water_level.mesh.surface_set_material(0, load("res://Shaders/water.tres"))
+	add_child(water_level)
 	biome_generator(terrain_manager.biomes, offset)
 
 func biome_height_generator(x: int, y: int, noise_value: FastNoiseLite) -> float:
@@ -90,7 +96,7 @@ func biome_generator(noise_value: FastNoiseLite, offset: Vector2i):
 			var failed: bool = false
 			var random_coords: Vector2 = Vector2(terrain_manager.rng.randf_range(offset.x, offset.x + chunk_size.x), terrain_manager.rng.randf_range(offset.y, offset.y + chunk_size.y))
 			for k in range(128):
-				if noise_value.get_noise_2dv(random_coords) > 0.25 / terrain_manager.trees_for_forest.size() * (j + 1) + 0.375 || noise_value.get_noise_2dv(random_coords) < 0.25 / terrain_manager.trees_for_forest.size() * j + 0.375:
+				if noise_value.get_noise_2dv(random_coords) > 0.375 || noise_value.get_noise_2dv(random_coords) < 0.675:
 					break
 				elif k < 127:
 					random_coords = Vector2(terrain_manager.rng.randf_range(offset.x, offset.x + chunk_size.x), terrain_manager.rng.randf_range(offset.y, offset.y + chunk_size.y))
@@ -99,7 +105,12 @@ func biome_generator(noise_value: FastNoiseLite, offset: Vector2i):
 					break
 			if failed:
 				break
-			var random_position: Vector3 = Vector3(random_coords.x, noise_value.get_noise_2dv(random_coords), random_coords.y)
+			
+			var height: float = noise_value.get_noise_2dv(random_coords)
+			if height < -0.01: 
+				break
+			
+			var random_position: Vector3 = Vector3(random_coords.x, height, random_coords.y)
 			multimesh.set_instance_transform(j, Transform3D(Basis(), random_position))
 		var mmi: MultiMeshInstance3D = MultiMeshInstance3D.new()
 		mmi.multimesh = multimesh
