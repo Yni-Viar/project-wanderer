@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bb6i7b6fu72kb"]
+
+[ext_resource type="Shader" uid="uid://cjli6n7wb22fy" path="res://Shaders/ChunkShader/chunk.gdshader" id="1_cyt5o"]
+[ext_resource type="Texture2D" uid="uid://dv2pkgu6ljfd5" path="res://Assets/Third-party/AmbientCG_CC0/Ground068_2K-PNG_Color.png" id="2_pvuog"]
+[ext_resource type="Texture2D" uid="uid://qil5dy00yy5h" path="res://Assets/Third-party/AmbientCG_CC0/Ground068_2K-PNG_Roughness.png" id="3_0i6xl"]
+[ext_resource type="Texture2D" uid="uid://cx4ohupjcr7s5" path="res://Assets/Third-party/AmbientCG_CC0/Ground093C_2K-PNG_Color.png" id="4_wf6hw"]
+[ext_resource type="Texture2D" uid="uid://dcckf1q8qtwe6" path="res://Assets/Third-party/AmbientCG_CC0/Ground093C_2K-PNG_Roughness.png" id="5_4i8tq"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_cyt5o")
+shader_parameter/ground_albedo = ExtResource("2_pvuog")
+shader_parameter/ground_roughness = ExtResource("3_0i6xl")
+shader_parameter/sand_albedo = ExtResource("4_wf6hw")
+shader_parameter/sand_roughness = ExtResource("5_4i8tq")
+shader_parameter/sand_fade_start = -0.5
+shader_parameter/sand_fade_end = -1.0

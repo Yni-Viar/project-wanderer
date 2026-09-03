@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cff5uacv07nea"]
+
+[ext_resource type="Environment" uid="uid://1c6vsgl4ua3u" path="res://Assets/Environment/Outside_HQ.tres" id="1_1v1ps"]
+
+[node name="Node3D" type="Node3D" unique_id=1311572318]
+transform = Transform3D(1, 0.0003427, -0.00016891, -0.000342464, 0.999999, 0.00143352, 0.000169389, -0.00143346, 0.999999, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1786544397]
+environment = ExtResource("1_1v1ps")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1734014802]
+transform = Transform3D(0.9969098, 0.000112068694, -0.07855443, 0.078554496, 1.7745537e-05, 0.9969097, 0.000113128124, -1, 8.881325e-06, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2126594369]
+transform = Transform3D(0.106334, -0.534699, -0.838325, -0.00173144, 0.843005, -0.537904, 0.994329, 0.0586487, 0.0887139, 0, 0, 0)

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c7e27pbj8iefi"]
+
+[ext_resource type="Script" uid="uid://b0l7c1cie32p6" path="res://MapGenerator/Chunk.gd" id="1_373eb"]
+
+[node name="Chunk" type="Node3D" unique_id=1811853869]
+script = ExtResource("1_373eb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=902659322]
