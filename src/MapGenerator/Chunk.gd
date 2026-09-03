@@ -110,7 +110,8 @@ func biome_generator(noise_value: FastNoiseLite, offset: Vector2i):
 			if height < -0.01: 
 				break
 			
-			var random_position: Vector3 = Vector3(random_coords.x, height, random_coords.y)
+			# Fix floating tree bug
+			var random_position: Vector3 = Vector3(random_coords.x, height - 1, random_coords.y)
 			multimesh.set_instance_transform(j, Transform3D(Basis(), random_position))
 		var mmi: MultiMeshInstance3D = MultiMeshInstance3D.new()
 		mmi.multimesh = multimesh

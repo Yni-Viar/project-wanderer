@@ -6,6 +6,8 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 @export var player: PlayerScript
 
+@export_range(2, 8) var fartherst_chunk_to_spawn: int = 4
+
 @export var biomes: FastNoiseLite
 # should be @export var but idk
 const enable_mountains: bool = false
@@ -43,10 +45,10 @@ func check_chunks():
 		player_global_pos = Vector2i(snappedi(player.global_position.x - 32, 64) / 64, snappedi(player.global_position.z - 32, 64) / 64)
 
 func regenerate_chunks():
-	for i in range(player_global_pos.x - 2, player_global_pos.x + 3):
-		for j in range(player_global_pos.y - 2, player_global_pos.y + 3):
-			if i == player_global_pos.x - 2 || i == player_global_pos.x + 2 || \
-			   j == player_global_pos.y - 2 || j == player_global_pos.y + 2:
+	for i in range(player_global_pos.x - fartherst_chunk_to_spawn, player_global_pos.x + fartherst_chunk_to_spawn + 1):
+		for j in range(player_global_pos.y - fartherst_chunk_to_spawn, player_global_pos.y + fartherst_chunk_to_spawn + 1):
+			if i == player_global_pos.x - fartherst_chunk_to_spawn || i == player_global_pos.x + fartherst_chunk_to_spawn || \
+			   j == player_global_pos.y - fartherst_chunk_to_spawn || j == player_global_pos.y + fartherst_chunk_to_spawn:
 				if used_chunks.has(Vector2i(i, j)):
 					unload_chunk(i, j)
 			else:
